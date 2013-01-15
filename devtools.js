@@ -1,5 +1,5 @@
 (function(){
-var getSelectedEmberView = function() {
+var getSelectedBackboneView = function() {
   // _V is a global of the selected view for experimentation in the console
   _V = undefined;
 
@@ -7,7 +7,7 @@ var getSelectedEmberView = function() {
   function findView(elm, n) {
     if (elm == null) { return undefined; }
     level = n || 0;
-    var found = Ember.View.views[elm.id];
+    var found = BackboneViews[elm.getAttribute('data-bb-view')];
     if (found == null) {
       level++;
       found = findView(elm.parentElement, level);
@@ -20,18 +20,20 @@ var getSelectedEmberView = function() {
   if (view) {
     _V = view;
     if (level > 0) { data.distance = level; }
-    data.id = view.get('elementId');
-    data.type = view.toString().match(/^<(.*):/)[1];
+    data.id = view.cid;
     data.view = view;
+    data.options = view.options;
+    data.collection = view.collection;
+    data.model = view.model;
   }
   return data;
 };
 
 chrome.devtools.panels.elements.createSidebarPane(
-  "Ember View",
+  "Backbone View",
   function(sidebar) {
     function updatePanel() {
-      sidebar.setExpression("(" + getSelectedEmberView.toString() + ")()");
+      sidebar.setExpression("(" + getSelectedBackboneView.toString() + ")()");
     }
 
     updatePanel();
