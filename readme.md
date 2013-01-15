@@ -6,6 +6,8 @@ Backbone Inspector is a Google Chrome Inspector extension for Backbone developer
 which provides information about the Backbone view backing the currently selected element in the DOM.
 It also assigns the view object to a global variable _V which can then be used within the console for further inspecting.
 
+![](http://i.imgur.com/SLixP.png)
+
 ### Backbone Notes
 * Backbone doesn't keep track of views the same way Ember does, so for now I've just hacked something on top of Backbone just as a proof on concept.
 * Inside `Backbone.View`, add the line: `window.BackboneViews[this.cid] = this;`
