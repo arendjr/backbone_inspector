@@ -10,6 +10,7 @@ It also assigns the view object to a global variable _V which can then be used w
 
 ### Backbone Notes
 * Backbone doesn't keep track of views the same way Ember does, so for now I've just hacked something on top of Backbone just as a proof on concept.
+* Put somewhere: `window.BackboneViews = {};`
 * Inside `Backbone.View`, add the line: `window.BackboneViews[this.cid] = this;`
 * Inside `_ensureElement`, add the line: `attrs['data-bb-view'] = this.cid;`
 * This gives each view element a `data-bb-view` attribute matching its internal `cid`, and keeps track of them `window.BackboneViews`.
