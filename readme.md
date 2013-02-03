@@ -15,6 +15,8 @@ Backbone doesn't keep track of views the same way Ember does, so for now I've ju
 * This gives each view element a `data-bb-view` attribute matching its internal `cid`, and keeps track of them `window.BackboneViews`.
 * __For now, this is just a proof of concept to get something awesome out. See the "Future" section for how I plan to make this better.__
 
+[__Check out the `injection` branch for WIP improvements__](https://github.com/danharper/backbone_inspector/tree/injection).
+
 ### How to use it
 * In Google Chrome, go to chrome://flags/ and enable Experimental Extension APIs. Relaunch your browser.
 * Open Tools-->Extensions (ensure Development mode is checked) and click on "Load unpacked extension..." to install the extension. You will need to reload Chrome once the extension is installed.
