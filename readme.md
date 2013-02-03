@@ -1,19 +1,27 @@
 ## Backbone Inspector
 
+On this branch I'm attempting to automate usage of the plugin. The aim being that the extension will inject the relevant code into Backbone when it's loaded. For now, I'm struggling with accessing the accessing the global scope correctly in the extension, so I'll get back to it later. But this is the code that needs to be run. _This removes the requirement for the user to make manual changes to Backbone`:
+
+```js
+BackboneViews = {};
+Backbone.View.prototype._oldConfigure = Backbone.View.prototype._configure;
+Backbone.View.prototype._configure = function(options) {
+	this.attributes = this.attributes || {};
+	this.attributes['data-bb-view'] = this.cid;
+	BackboneViews[this.cid] = this;
+	Backbone.View.prototype._oldConfigure.call(this, options);
+};
+```
+
+For now, just run that code in the console. New Backbone views are then set up correctly for the extension.
+
+---
+
 A Chrome Developer Tools extension for Backbone developers. It creates a new sidebar panel in the Elements tab to provides information on the Backbone view backing the currently selected DOM element.
 
 It also assigns the view object to a global variable `_V` which can then be used within the console for further inspecting.
 
 ![](http://i.imgur.com/SLixP.png)
-
-### Usage Notes
-Backbone doesn't keep track of views the same way Ember does, so for now I've just hacked something on top of Backbone just as a proof of concept.
-
-* Put somewhere: `window.BackboneViews = {};`
-* Inside `Backbone.View`, add the line: `window.BackboneViews[this.cid] = this;`
-* Inside `_ensureElement`, add the line: `attrs['data-bb-view'] = this.cid;`
-* This gives each view element a `data-bb-view` attribute matching its internal `cid`, and keeps track of them `window.BackboneViews`.
-* __For now, this is just a proof of concept to get something awesome out. See the "Future" section for how I plan to make this better.__
 
 ### How to use it
 * In Google Chrome, go to chrome://flags/ and enable Experimental Extension APIs. Relaunch your browser.
