@@ -1,6 +1,8 @@
 ## Backbone Inspector
 
-On this branch I'm attempting to automate usage of the plugin. The aim being that the extension will inject the relevant code into Backbone when it's loaded. For now, I'm struggling with accessing the accessing the global scope correctly in the extension, so I'll get back to it later. But this is the code that needs to be run. _This removes the requirement for the user to make manual changes to Backbone`:
+On this branch I'm attempting to automate usage of the plugin. The aim being that the extension will inject the relevant code into Backbone when it's loaded. For now, I'm struggling with accessing the global scope correctly in the extension, so I'll get back to it later once I've done some more reading on the Chrome Extensions API. But this is the code that needs to be run:
+
+_This removes the requirement for the user to make manual changes to Backbone_:
 
 ```js
 BackboneViews = {};
@@ -14,6 +16,8 @@ Backbone.View.prototype._configure = function(options) {
 ```
 
 For now, just run that code in the console. New Backbone views are then set up correctly for the extension.
+
+Also need to accurately detect Backbone. For now, I'm just assuming Backbone is on the global namespace, and not wrapped as an AMD module.
 
 ---
 
