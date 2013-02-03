@@ -20,7 +20,7 @@ Backbone doesn't keep track of views the same way Ember does, so for now I've ju
 * Open Tools-->Extensions (ensure Development mode is checked) and click on "Load unpacked extension..." to install the extension. You will need to reload Chrome once the extension is installed.
 
 ### Future
-* Remove requirement of editing the core Backbone library - most likely by including a new core View class to extend from
+* Remove requirement of editing the core Backbone library - most likely by including a new core View class to extend from ([see Issue](https://github.com/danharper/backbone_inspector/issues/1))
 * Collection/Model explorers, likely in a new Dev Tools tab
 * Look more into what Yehuda's doing with his [Ember Inspector](https://www.youtube.com/watch?feature=player_embedded&v=0B9leRf5kuo), see what we can acomplish with Backbone
 * View parent/child views - again, not sure as Backbone doesn't provide this functionality. Could become a new extension for one of the popular Backbone frameworks - BBB/LayoutManager or Marionette, for example.
